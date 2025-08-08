@@ -1,10 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html v-scope
+      lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <base href="/">
+
+    <title>Kozlemenyfigyeles</title>
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+
+    <link v-for="href in $h.window.css"
+          :key="href"
+          :href="href"
+          rel="stylesheet">
+
+    <style>
+        [v-cloak] {
+            display: none !important;
+        }
+    </style>
+
+    <script src="https://unpkg.com/petite-vue" defer init></script>
+    <script src="js/helpers.js"></script>
 </head>
-<body>
-    <h1>Hello world!</h1>
+<body v-cloak>
+    <button @click="console.log('Hi!')">Click</button>
 </body>
 </html>
