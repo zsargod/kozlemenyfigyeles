@@ -19,10 +19,10 @@
 </head>
 <body v-cloak>
     <main class="container">
-        <div v-scope="{component:{}}"
-             @vue:mounted="fetch('components/table.html').then(r=>r.text()).then(r=>component.$template=r)">
-            <div v-if="component.$template"
-                 v-scope="component"></div>
+        <div v-scope="{template:null}"
+             @vue:mounted="fetch('components/table.html').then(r=>r.text()).then(r=>template=r)">
+            <div v-if="template"
+                 v-scope="{$template:template}"></div>
         </div>
     </main>
 </body>
