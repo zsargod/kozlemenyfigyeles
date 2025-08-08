@@ -19,7 +19,17 @@
 </head>
 <body v-cloak>
     <main class="container">
-        <button @click="console.log('Hi!')">Click</button>
+        <table v-scope="{rows:[]}"
+               @vue:mounted="fetch('https://retoolapi.dev/HcbINV/data').then(r=>r.json()).then(r=>rows=r)">
+            <tr>
+                <th v-for="(value,key) in rows[0]"
+                    v-text="key"></th>
+            </tr>
+            <tr v-for="row in rows">
+                <th v-for="cell in row"
+                    v-text="cell"></th>
+            </tr>
+        </table>
     </main>
 </body>
 </html>
