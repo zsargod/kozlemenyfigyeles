@@ -18,9 +18,9 @@
     <script src="js/helpers.js"></script>
 </head>
 <body v-cloak>
-    <main class="container">
-        <div v-scope="{template:null}"
-             @vue:mounted="fetch('components/table.html').then(r=>r.text()).then(r=>template=r)">
+    <main v-scope="{template:null,component:'components/pages'}"
+          class="container">
+        <div v-effect="component&&fetch(component).then(r=>(template=null,r.text())).then(r=>template=r)">
             <div v-if="template"
                  v-scope="{$template:template}"></div>
         </div>

@@ -1,0 +1,13 @@
+<div v-scope="{api:$h.api('https://retoolapi.dev/4xqssi/projects')}">
+    <article v-scope="{template:null,component:'components/form'}"
+             @vue:mounted="fetch(component).then(r=>r.text()).then(r=>template=r)">
+        <div v-if="template"
+             v-scope="{$template:template}"></div>
+    </article>
+
+    <article v-scope="{template:null,component:'components/table'}"
+             @vue:mounted="fetch(component).then(r=>r.text()).then(r=>template=r)">
+        <div v-if="template"
+             v-scope="{$template:template}"></div>
+    </article>
+</div>

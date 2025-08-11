@@ -1,0 +1,22 @@
+<form v-scope="{formData:{name:null,description:null,date:Date.now()}}"
+      @load-form="formData=$event.data"
+      @submit.prevent="api.form(formData).then(r=>$h.emit('table-reload'));$el.reset()"
+      global-load-form>
+    <h4>Add new project</h4>
+
+    <label>
+        <input v-model="formData.name"
+               type="text"
+               placeholder="Name of your project"
+               required>
+    </label>
+
+    <label>
+        <input v-model="formData.description"
+               type="text"
+               placeholder="Description of your project"
+               required>
+    </label>
+
+    <button type="submit">Save</button>
+</form>
