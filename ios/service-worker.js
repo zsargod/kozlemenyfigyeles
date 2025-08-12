@@ -18,3 +18,21 @@ self.addEventListener('fetch', (e) => {
         caches.match(e.request).then(cached => cached || fetch(e.request))
     );
 });
+
+self.addEventListener('push', event => {
+    const data = event.data ? event.data.json() : {};
+    const title = data.title || 'Notification';
+    const options = {
+        body: data.body || 'No content',
+        icon: '/icons/icon-192x192.png',
+        badge: '/icons/apple-touch-icon-72x72.png',
+        data: data.url || '/'
+    };
+
+    event.waitUntil(self.registration.showNotification(title, options));
+});
+
+self.addEventListener('notificationclick', event => {
+    event.notification.close();
+    event.waitUntil(clients.openWindow(event.notification.data));
+});
